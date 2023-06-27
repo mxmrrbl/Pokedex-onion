@@ -1,0 +1,117 @@
+﻿@using Pokedex.Core.Application.ViewModels;
+@model List<PokemonViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+
+	<div class="col-3 py-5">
+
+        <div class="card mb-5 shadow-sm">
+
+			<div class="card-header bg-dark text-light">
+				<h4>Search by name</h4>
+            </div>
+
+            <div class="card-body">
+				<form method="post" asp-controller="Home" asp-action="Search">
+					<div class="mb-3">
+						
+						<input class="form-control" type="search" name="name" />
+                        
+                    </div>
+
+					<button type="submit" class="btn btn-primary">Search</button>
+
+                </form>
+                
+				
+            </div>
+
+        </div>
+
+        <div class="card mb-5 shadow-sm">
+
+			<div class="card-header bg-dark text-light">
+				<h4>Filters</h4>
+            </div>
+
+            <div class="card-body">
+                <h4 class="card-title">Regions</h4>
+				<form method="post" asp-controller="Home" asp-action="Index">
+					<div class="mb-3">
+						<div class="form-check">
+							<input class="form-check-input" value="null" type="radio" name="Region" id="region-all" />
+							<label class="form-check-label" for="region-all">All</label>
+                        </div>
+                    </div>
+
+                    @foreach(RegionViewModel region in ViewBag.Regions){
+                        <div class="mb-3">
+						    <div class="form-check">
+							    <input class="form-check-input" value="@region.id" type="radio" name="Region" id="region-@region.id" />
+							    <label class="form-check-label" for="region-all">@region.name</label>
+                            </div>
+                        </div>
+                    }
+
+					<button type="submit" class="btn btn-primary">Search</button>
+
+                </form>
+                
+				
+            </div>
+
+        </div>
+    </div>
+	<div class="col-9">
+
+        @if(Model.Count == 0 || Model == null)
+        {
+            <h2 class="py-5">No hay pokemons</h2>
+        }
+
+        <div class="album py-5  d-xl-flex flex-lg-row">
+
+            <div class="row align-items-center justify-content-center text-center">
+
+                @foreach (PokemonViewModel item in Model)
+                {
+
+                    <div class="div-card-pokemon mb-3">
+                        <div class="card mb-5 shadow-sm">
+                            <img src="@item.imageUrl" alt="" />
+
+                            <div class="card-body">
+
+								
+                                <h6 class="card-text mb-0">@item.name</h6> <p class="mb-0">Region: @item.region</p>
+
+                                @if(item.type1 == item.type2)
+                                {
+                                    <p class="text-muted d-inline-block">@item.type1</p>
+                                }
+                                else
+                                {
+                                    <p class="text-muted d-inline-block">@item.type1 - </p> <p class="text-muted d-inline-block">@item.type2</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                
+                }
+            </div>
+        </div>
+
+         
+        
+
+    </div>
+
+</div>
+
+
+
+         
+

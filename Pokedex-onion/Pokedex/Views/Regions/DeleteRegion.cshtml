@@ -1,0 +1,29 @@
+﻿@using Pokedex.Core.Application.ViewModels;
+
+@model SaveRegionViewModel
+
+
+@{
+
+}
+
+<div class="row">
+
+	<div class="col-6 offset-3">
+
+		<div class="card">
+			<div class="card-header">
+				<h4>Seguro que desea eliminar la region?</h4>
+			</div>
+			<div class="card-body">
+				<form method="post" asp-controller="Regions" asp-action="DeletePost">
+					<input type="hidden" asp-for="id" />
+					<button type="submit" class="btn btn-danger">Eliminar</button>
+					<a asp-controller="Regions" asp-action="Regions" class="btn btn-warning">Cancelar</a>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+</div>

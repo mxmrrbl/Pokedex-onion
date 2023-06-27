@@ -1,0 +1,29 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+.div-card-pokemon {
+    width: 220px;
+    height: 343.8px
+}
+
+.div-card-region {
+    width: 440px;
+    height: 114.6.8px
+}

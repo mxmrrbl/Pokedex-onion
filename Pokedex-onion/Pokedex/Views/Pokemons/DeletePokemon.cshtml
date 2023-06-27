@@ -1,0 +1,25 @@
+﻿@using Pokedex.Core.Application.ViewModels;
+
+@model SavePokemonViewModel
+
+
+<div class="row">
+
+	<div class="col-6 offset-3">
+
+		<div class="card">
+			<div class="card-header">
+				<h4>Seguro que desea eliminar el pokemon?</h4>
+			</div>
+			<div class="card-body">
+				<form method="post" asp-controller="Pokemons" asp-action="DeletePost">
+					<input type="hidden" asp-for="id" />
+					<button type="submit" class="btn btn-danger">Eliminar</button>
+					<a asp-controller="Pokemons" asp-action="Pokemons" class="btn btn-warning">Cancelar</a>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+</div>

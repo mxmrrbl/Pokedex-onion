@@ -1,0 +1,63 @@
+﻿@using Pokedex.Core.Application.ViewModels;
+
+@model SavePokemonViewModel
+
+@{
+	bool editMode = Model.id == 0 ? false : true;
+	ViewData["Title"] = "Guardar Pokemon";
+}
+
+
+<div class="container-fluid">
+
+	<div class="row">
+
+		<div class="col-6 offset-3">
+			<div class="card">
+				<div class="card-header bg-dark text-white">
+					<h4>@(editMode ? $"Editing: {Model.name}" : "Creating new pokemon")</h4>
+				</div>
+				<div class="card-body">
+					<form method="post" asp-controller="Pokemons" asp-action="@(editMode ? "Edit":"Create")">
+
+						<div class="mb-3">
+							<input type="text" placeholder="Name" asp-for="name" class="form-control" />
+							<span asp-validation-for="name" class="text-danger"></span>
+						</div>
+
+						<div class="mb-3">
+							<input type="text" placeholder="Image Url" asp-for="imageUrl" class="form-control" />
+							<span asp-validation-for="imageUrl" class="text-danger"></span>
+						</div>
+
+						<div class="mb-3">
+							<select asp-for="type1" asp-items="ViewBag.types" class="form-select">
+								<option  value="@Model.type1">Select type</option>
+							</select>
+							<span asp-validation-for="type1" class="text-danger"></span>
+						</div>
+
+						<div class="mb-3">
+							<select asp-for="type2" asp-items="ViewBag.types" class="form-select">
+								<option  value="@Model.type2">Select type</option>
+								
+							</select>
+						</div>
+
+						<div class="mb-3">
+							<select asp-for="region" asp-items="ViewBag.regions" class="form-select">
+								<option  value="@Model.region">Select region</option>
+							</select>
+							<span asp-validation-for="region" class="text-danger"></span>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Save</button>
+						<a asp-controller="Pokemons" asp-action="Pokemons" class="btn btn-success">Back</a>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
